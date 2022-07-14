@@ -24,7 +24,7 @@ function record_employee_list() {
           
         <?php
         global $wpdb;
-        $table_name = $wpdb->prefix . "employee";
+        $table_name = $wpdb->prefix . "employeeform";
 
         $rows = $wpdb->get_results("SELECT * from $table_name");
         ?>
@@ -34,9 +34,7 @@ function record_employee_list() {
                 <tr>
                     <th>ID</th>
                     <th>FIRST</th>
-                    <th>MIDDLE</th>
-                    <th>LAST</th>
-                    <th>BIRTHDAY</th>                
+                    <th>LAST</th>             
                     <th>AGE</th>
                     <th>CONTACT</th>
                     <th>ADDRESS</th>
@@ -48,9 +46,7 @@ function record_employee_list() {
                 <tr>
                     <td><?php echo $row->id; ?></td>
                     <td><?php echo $row->firstname; ?></td>
-                    <td><?php echo $row->middlename; ?></td>
                     <td><?php echo $row->lastname; ?></td>
-                    <td><?php echo $row->birthday; ?></td>
                     <td><?php echo $row->age; ?></td>
                     <td><?php echo $row->contact; ?></td>
                     <td><?php echo $row->address; ?></td>

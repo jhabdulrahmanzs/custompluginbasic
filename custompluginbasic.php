@@ -49,6 +49,11 @@ function employeeDB_options_delete() {
 }
 register_deactivation_hook( __FILE__, 'employeeDB_options_delete' );
 
+
+
+
+add_action('admin_menu','employee_record_modifymenu');
+
 // function to add menu items detail
 function employee_record_modifymenu() {
 	
@@ -79,7 +84,7 @@ function employee_record_modifymenu() {
 	'record_employee_update'); //function
 }
 
-// define('ROOTDIR', plugin_dir_path(__FILE__));
-// require_once(ROOTDIR . 'employee-record-list.php');
-// require_once(ROOTDIR . 'employee-record-create.php');
-// require_once(ROOTDIR . 'employee-record-update.php');
+define('ROOTDIR', plugin_dir_path(__FILE__));
+require_once(ROOTDIR . 'admin/employee-record-list.php');
+require_once(ROOTDIR . 'admin/employee-record-create.php');
+require_once(ROOTDIR . 'admin/employee-record-update.php');
