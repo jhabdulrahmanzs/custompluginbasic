@@ -2,14 +2,11 @@
   
 function record_employee_update() {
     global $wpdb;
-    $table_name = $wpdb->prefix . "employee";
+    $table_name = $wpdb->prefix . "employeeform";
     $id = $_GET["id"];
     $firstname = $_POST["firstname"];
-    $middlename = $_POST["middlename"];
     $lastname = $_POST["lastname"];
     $age = $_POST["age"];
-    $birthday = $_POST["birthday"];
-    $bday = date('Y-m-d', strtotime($birthday));
     $contact = $_POST["contact"];
     $address = $_POST["address"];
     //update data
@@ -19,10 +16,8 @@ function record_employee_update() {
             $table_name,
             // data input
             array('firstname' => $firstname,
-                  'middlename' => $middlename,
                   'lastname' => $lastname,
                   'age' => $age,
-                  'birthday' => $bday,
                   'contact' => $contact,
                   'address' => $address),
             // where 
@@ -30,9 +25,7 @@ function record_employee_update() {
             // data format 
             array('%s' ,
                   '%s' , 
-                  '%s' , 
                   '%d' , 
-                  '%s' ,
                   '%d' , 
                   '%s'),
             // where format 
@@ -48,9 +41,7 @@ function record_employee_update() {
         $empRecord = $wpdb->get_results($wpdb->prepare("SELECT * from $table_name where id=%d", $id));
         foreach ($empRecord as $e) {
             $fname = $e->firstname;
-            $mname = $e->middlename;
             $lname = $e->lastname;
-            $biday = $e->birthday;
             $edad = $e->age;
             $cnum = $e->contact;
             $tirahan = $e->address;
@@ -101,16 +92,8 @@ function record_employee_update() {
                         <td><input type="text" name="firstname" class="form-control" value="<?php echo $fname; ?>"/></td>
                     </tr>
                     <tr>
-                        <th>Middlename: </th>
-                        <td><input type="text" name="middlename" class="form-control" value="<?php echo $mname; ?>"/></td>
-                    </tr>
-                    <tr>
                         <th>Lastname: </th>
                         <td><input type="text" name="lastname" class="form-control" value="<?php echo $lname; ?>"/></td>
-                    </tr>
-                    <tr>
-                        <th>Birthday: </th>
-                        <td><input type="text" name="birthday" id="datePick" class="form-control" value="<?php echo $biday; ?>"/></td>
                     </tr>
                     <tr>
                         <th>Age: </th>

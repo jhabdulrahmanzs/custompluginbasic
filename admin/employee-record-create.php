@@ -4,35 +4,28 @@
 function record_employee_create() {
     $id = $_POST["id"];
     $firstname = $_POST["firstname"];
-    $middlename = $_POST["middlename"];
     $lastname = $_POST["lastname"];
     $age = $_POST["age"];
-    $birthday = $_POST["birthday"];
-    $bday1 = date('Y-m-d', strtotime($birthday));
     $contact = $_POST["contact"];
     $address = $_POST["address"];
     //insert
     if (isset($_POST['insert'])) {
         global $wpdb;
-        $table_name = $wpdb->prefix . "employee";
+        $table_name = $wpdb->prefix . "employeeform";
 
         $wpdb->insert(
                 //table
                 $table_name,
                 //data to be input in the database 
                 array('firstname' => $firstname,
-                  'middlename' => $middlename,
                   'lastname' => $lastname,
                   'age' => $age,    
-                  'birthday' => $bday1,
                   'contact' => $contact,
                   'address' => $address),
                 // data format 
                 array('%s' , 
                       '%s' , 
-                      '%s' , 
                       '%d' , 
-                      '%s' , 
                       '%d' , 
                       '%s')
         );
@@ -59,20 +52,12 @@ function record_employee_create() {
                             <td><input type="text" name="firstname"  class="form-control" value="<?php echo $firstname; ?>" placeholder="Firstname"/></td>
                         </tr>
                         <tr>    
-                            <th>Middle name:</th>
-                            <td><input type="text" name="middlename"  class="form-control" value="<?php echo $middlename; ?>" placeholder="Middlename"/></td>
-                        </tr>
-                        <tr>    
                             <th>Last name:</th>
                             <td><input type="text" name="lastname"  class="form-control" value="<?php echo $lastname; ?>" placeholder="Lastname"/></td>
                         </tr>
                         <tr>    
                             <th>Age:</th>
                             <td><input type="text" name="age"  class="form-control" value="<?php echo $age; ?>" placeholder="Age"/></td>
-                        </tr>
-                        <tr>    
-                            <th>Birthday:</th>
-                            <td><input type="text" data-provide="datepicker" id="datePicker" name="birthday" value="<?php echo $birthday; ?>"placeholder="YYYY/MM/DD" data-input/></td>
                         </tr>
                         <tr>    
                             <th>Contact No.:</th>
@@ -98,13 +83,7 @@ function record_employee_create() {
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <!-- Flatpickr option -->
-    <script>
-        $('#datePicker').datepicker({
-            uiLibrary: 'bootstrap4',
-            dateFormat: "Y-m-d"
-        });
-    </script>
+
 
     <?php
 }
