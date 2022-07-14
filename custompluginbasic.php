@@ -39,6 +39,16 @@ function employeeDB_options_install() {
 // will run the install scripts upon plugin activation
 register_activation_hook(__FILE__, 'employeeDB_options_install');
 
+// Delete-table
+function employeeDB_options_delete() {
+    global $wpdb;
+    $table_name = $wpdb->prefix.'employeeform';
+    $sql = "DROP TABLE IF EXISTS $table_name";
+    $wpdb->query($sql);
+    delete_option("devnote_plugin_db_version");
+}
+register_deactivation_hook( __FILE__, 'employeeDB_options_delete' );
+
 // function to add menu items detail
 function employee_record_modifymenu() {
 	
