@@ -1,5 +1,5 @@
 <?php
-  
+  error_reporting(0);
 function record_employee_update() {
     global $wpdb;
     $table_name = $wpdb->prefix . "employeeform";

@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 //function to create a new record 
 function record_employee_create() {
     $id = $_POST["id"];
