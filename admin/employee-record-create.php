@@ -1,6 +1,7 @@
 <?php
 error_reporting(0);
 //function to create a new record 
+$message = '';
 function record_employee_create() {
     $id = $_POST["id"];
     $firstname = $_POST["firstname"];
