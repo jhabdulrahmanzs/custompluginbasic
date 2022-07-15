@@ -88,3 +88,9 @@ define('ROOTDIR', plugin_dir_path(__FILE__));
 require_once(ROOTDIR . 'admin/employee-record-list.php');
 require_once(ROOTDIR . 'admin/employee-record-create.php');
 require_once(ROOTDIR . 'admin/employee-record-update.php');
+
+// pages
+require_once(ROOTDIR . 'includes/employee-display-record.php');
+
+
+require_once(ROOTDIR . 'templates/employee-page-create.php');
