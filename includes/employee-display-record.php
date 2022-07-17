@@ -2,7 +2,9 @@
 
 
 
+
 function employee_displayrecord(){
+    
     ?>
    <div  id="primary" class="content-area">
     <div id="main" class="site-main" role="main">
@@ -22,7 +24,6 @@ function employee_displayrecord(){
                     <th>AGE</th>
                     <th>CONTACT</th>
                     <th>ADDRESS</th>
-                    <!-- <th>EDIT</th> -->
                 </tr> 
             </thead>
             <tbody>
