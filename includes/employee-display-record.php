@@ -1,7 +1,7 @@
 <?php
-if(!is_admin()){
-   add_action('init','employee_displayrecord');
-}
+
+
+
 function employee_displayrecord(){
     ?>
    <div  id="primary" class="content-area">
