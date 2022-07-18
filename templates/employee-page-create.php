@@ -27,14 +27,6 @@ if (!get_page_by_path( $page_slug, OBJECT, 'page')) { // Check If Page Not Exits
     $new_page_id = wp_insert_post($new_page);
 }
 
-// if(isset($page_slug)) {
-//     header ("Location: includes/employee-display-record.php");
-// }
-// else {
-//     echo "dasfd";
-// }
-
-
 
 
 ?>
