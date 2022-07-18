@@ -8,62 +8,66 @@
 // global $post;
 // $post_slug = $post->post_name;
 // if($post_slug){
-//    get_home_url() ./$post_slug;
+// echo get_home_url();
 // }
 
-if(home_url('registerdata')){
-    echo 'some';
-}
 
+    $gethomeurl =get_home_url();
 
-
-function employee_displayrecord($content){
+    $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    $getslugname = str_replace($gethomeurl,'',$actual_link);
+    $rmslash = preg_replace('|/|', '',$getslugname);
     
-    ?>
-   <div  id="primary" class="content-area">
-    <div id="main" class="site-main" role="main">
-    <?php
-        global $wpdb;
-        $table_name = $wpdb->prefix . "employeeform";
+    if($rmslash == 'regsiterdata') {
+       
+        add_filter('the_content', 'employee_displayrecord');
+    }
+        
+        
+      
+    function employee_displayrecord($content)
+    {
+      
+        
+?>
+        <div id="primary" class="content-area">
+            <div id="main" class="site-main" role="main">
+                <?php
+                global $wpdb;
+                $table_name = $wpdb->prefix . "employeeform";
 
-        $rows = $wpdb->get_results("SELECT * from $table_name");
-        ?>
+                $rows = $wpdb->get_results("SELECT * from $table_name");
+                ?>
 
-        <table  id="empList" class="table table-striped table-bordered" style="width:100%">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>FIRST</th>
-                    <th>LAST</th>             
-                    <th>AGE</th>
-                    <th>CONTACT</th>
-                    <th>ADDRESS</th>
-                </tr> 
-            </thead>
-            <tbody>
-            <?php foreach ($rows as $row) { ?>
-                <tr>
-                    <td><?php echo $row->id; ?></td>
-                    <td><?php echo $row->firstname; ?></td>
-                    <td><?php echo $row->lastname; ?></td>
-                    <td><?php echo $row->age; ?></td>
-                    <td><?php echo $row->contact; ?></td>
-                    <td><?php echo $row->address; ?></td>
-                  
-                </tr>
-            <?php } ?>
-            </tbody>
-        </table>
-    </div>
-</div>
+                <table id="empList" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>FIRST</th>
+                            <th>LAST</th>
+                            <th>AGE</th>
+                            <th>CONTACT</th>
+                            <th>ADDRESS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($rows as $row) { ?>
+                            <tr>
+                                <td><?php echo $row->id; ?></td>
+                                <td><?php echo $row->firstname; ?></td>
+                                <td><?php echo $row->lastname; ?></td>
+                                <td><?php echo $row->age; ?></td>
+                                <td><?php echo $row->contact; ?></td>
+                                <td><?php echo $row->address; ?></td>
+
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
 <?php
-return $content;
-
-}
+        return $content;
+    }
 ?>
-
-
-
-
-
