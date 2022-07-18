@@ -1,9 +1,23 @@
 <?php
+// if($page_slug == 'registerdata') {
+//     add_filter( 'the_content', 'employee_displayrecord');
+//  }
+//  else {
+//     echo "unable to fetch data";
+//  }
+// global $post;
+// $post_slug = $post->post_name;
+// if($post_slug){
+//    get_home_url() ./$post_slug;
+// }
+
+if(home_url('registerdata')){
+    echo 'some';
+}
 
 
 
-
-function employee_displayrecord(){
+function employee_displayrecord($content){
     
     ?>
    <div  id="primary" class="content-area">
@@ -44,7 +58,7 @@ function employee_displayrecord(){
 </div>
 
 <?php
-
+return $content;
 
 }
 ?>
