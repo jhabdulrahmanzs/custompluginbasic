@@ -10,31 +10,7 @@ function display_page_on_activation() {
 }
 // require_once(ROOTDIR . 'includes/employee-display-record.php');
 
-$post_values= '
-
-<table  id="empList" class="table table-striped table-bordered" style="width:100%">
-<thead>
-    <tr>
-        <th>ID</th>
-        <th>FIRST</th>
-        <th>LAST</th>             
-        <th>AGE</th>
-        <th>CONTACT</th>
-        <th>ADDRESS</th>
-    </tr> 
-</thead>
-<tbody>
-    <tr>
-        <td>1</td>
-        <td>sdf</td>
-        <td>wdf</td>
-        <td>22</td>
-        <td>235423523</td>
-        <td>wfwe</td>
-      
-    </tr>
-</tbody>
-</table>';
+$post_values= 'Employee records';
 // $PageGuid = site_url() . "/regsiterdata";
 $page_slug = 'regsiterdata'; // Slug of the Post
 $new_page = array(
