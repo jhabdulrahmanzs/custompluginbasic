@@ -8,7 +8,6 @@ register_activation_hook( 'PLUGIN_FILE_PATH', 'display_page_on_activation' );
 function display_page_on_activation() {
      if ( ! current_user_can( 'activate_plugins' ) ) return;
 }
-// require_once(ROOTDIR . 'includes/employee-display-record.php');
 
 $post_values= 'Employee records';
 // $PageGuid = site_url() . "/regsiterdata";
