@@ -1,10 +1,5 @@
-<?php
 
-function employee_displayrecord($content)
-{
-  
-    
-?>
+
     <div id="primary" class="content-area">
         <div id="main" class="site-main" role="main">
             <?php
@@ -41,8 +36,3 @@ function employee_displayrecord($content)
             </table>
         </div>
     </div>
-
-<?php
-    return $content;
-}
-?>
