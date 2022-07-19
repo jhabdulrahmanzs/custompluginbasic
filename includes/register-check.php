@@ -5,15 +5,15 @@
     $getslugname = str_replace($gethomeurl,'',$actual_link);
     $rmslash = preg_replace('|/|', '',$getslugname);
     
-    if($rmslash == 'regsiterdata') {
+    if($rmslash == 'newregistration') {
        
-        add_filter('the_content', 'employee_displayrecord');
+        add_filter('the_content', 'register_create_page');
     }      
         
       
-    function employee_displayrecord($content)
+    function register_create_page($content)
     {      
-        include_once(ROOTDIR . 'includes/controller/registerview.php');
+        include_once(ROOTDIR . './templates/registeration.php');
         return $content;
     }
 ?>
