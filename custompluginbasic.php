@@ -50,17 +50,22 @@ register_deactivation_hook( __FILE__, 'employeeDB_options_delete' );
 
 
 
-
+define('MY_PLUGIN_URL',plugin_dir_url(__FILE__));
 define('ROOTDIR', plugin_dir_path(__FILE__));
 
+
+
+// include css and js files
 require_once(ROOTDIR . 'admin/init.php');
-// pages
+
+
+require_once(ROOTDIR . 'assets/public.php');
+// class controller
 require_once(ROOTDIR . 'includes/employee-display-record.php');
 require_once(ROOTDIR . 'includes/register-check.php');
 
+
+//  views
 require_once(ROOTDIR . 'templates/employee-page-create.php');
 require_once(ROOTDIR . 'templates/register-page-create.php');
 
-// if(!is_admin()){
-// 	require_once(ROOTDIR . 'templates/employee-page-create.php');
-// }

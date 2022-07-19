@@ -34,3 +34,11 @@ function employee_record_modifymenu() {
 require_once(ROOTDIR . 'admin/employee-record-list.php');
 require_once(ROOTDIR . 'admin/employee-record-create.php');
 require_once(ROOTDIR . 'admin/employee-record-update.php');
+
+
+
+require_once(ROOTDIR . 'assets/public.php');
+
+
+
+?>
