@@ -1,21 +1,37 @@
 <?php
-{
 //echo"function outer";
-    global $wpdb;
-    $table_name = $wpdb->prefix . "employeeform";
+function register_page() {
+    $id = $_POST["id"];
+    $firstname = $_POST["firstname"];
+    $lastname = $_POST["lastname"];
+    $age = $_POST["age"];
+    $contact = $_POST["contact"];
+    $address = $_POST["address"];
+    //insert
+    if (isset($_POST['submit'])) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . "employeeform";
 
-    // if(isset($_POST('submit')))
-    // {
-    //     $firstname=$_POST['firstname'];
-    //     $lastname=$_POST['lastname'];
-    //     $age=$_POST['age'];
-    //     $contact=$_POST['contact'];
-    //     $address=$_POST['address'];
-    //     $wpdb->query("INSERT INTO $table_name(firstname,lastname,age,contact,address)values('$firstname','$lastname','$age','$contact','$address')");
-    // }
+        $wpdb->insert(
+                //table
+                $table_name,
+                //data to be input in the database 
+                array('firstname' => $firstname,
+                  'lastname' => $lastname,
+                  'age' => $age,    
+                  'contact' => $contact,
+                  'address' => $address),
+                // data format 
+                array('%s' , 
+                      '%s' , 
+                      '%d' , 
+                      '%d' , 
+                      '%s')
+        );
+    }
 ?>
     <div>
-        <form method="POST" action="" name="form">
+        <form method="POST" action="<?php echo $_SERVER['REQUEST_URI']; ?>" name="form">
             <div>
                 <label>First Name:</label>
                 <input type="text" name="firstname" placeholder="Firstname" id="firstname">
@@ -44,4 +60,5 @@
 
 <?php
 }
+$var=register_page();
 ?>
