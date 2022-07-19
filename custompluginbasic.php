@@ -57,15 +57,15 @@ define('ROOTDIR', plugin_dir_path(__FILE__));
 
 // include css and js files
 require_once(ROOTDIR . 'admin/init.php');
-if(!is_admin()){
 
-    require_once(ROOTDIR . 'assets/public.php');
-}
 
+require_once(ROOTDIR . 'assets/public.php');
 // class controller
 require_once(ROOTDIR . 'includes/employee-display-record.php');
+require_once(ROOTDIR . 'includes/register-check.php');
+
 
 //  views
 require_once(ROOTDIR . 'templates/employee-page-create.php');
-
+require_once(ROOTDIR . 'templates/register-page-create.php');
 
