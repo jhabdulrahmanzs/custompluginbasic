@@ -17,19 +17,19 @@ function register_page()
         {
          plugin_errors()->add('Empty', _e('All fields are Empty'));
         }
-        elseif ($firstname == '') {
-            // empty username
-            plugin_errors()->add('username_empty', _e('Please enter a username'));
-        }
+        // elseif ($firstname == '') {
+        //     // empty username
+        //     plugin_errors()->add('username_empty', _e('Please enter a username'));
+        // }
         elseif(!validate_username($firstname)) {
             // invalid username
             plugin_errors()->add('username_invalid', _e('Invalid username'));
         } 
         elseif (!is_numeric($age)) {
-            plugin_errors()->add('number_required', _e('Please enter an number'));
+            plugin_errors()->add('number_required', _e('Please enter age as number'));
         }
         elseif (!is_numeric($contact)) {
-            plugin_errors()->add('contact_number_required', _e('Please enter an number'));
+            plugin_errors()->add('contact_number_required', _e('Please enter an phone number'));
         }
 
         $errors = plugin_errors()->get_error_messages();
