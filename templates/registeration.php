@@ -1,113 +1,103 @@
-<?php
-//echo"function outer";
-function register_page()
-{
-    // $id = $_POST["id"];
-    //insert
-    if (isset($_POST['submit'])) {
 
-        $firstname = $_POST["firstname"];
-        $lastname = $_POST["lastname"];
-        $age = $_POST["age"];
-        $contact = $_POST["contact"];
-        $address = $_POST["address"];
-        $error=[];
-        
-        if($firstname== '' && $lastname=='' && $age=='' && $contact== '' && $address=='')
-        {
-         plugin_errors()->add('Empty', _e('All fields are Empty'));
-        }
-        // elseif ($firstname == '') {
-        //     // empty username
-        //     plugin_errors()->add('username_empty', _e('Please enter a username'));
-        // }
-        elseif(!validate_username($firstname)) {
-            // invalid username
-            plugin_errors()->add('username_invalid', _e('Invalid username'));
-        } 
-        elseif (!is_numeric($age)) {
-            plugin_errors()->add('number_required', _e('Please enter age as number'));
-        }
-        elseif (!is_numeric($contact)) {
-            plugin_errors()->add('contact_number_required', _e('Please enter an phone number'));
-        }
 
-        $errors = plugin_errors()->get_error_messages();
-        if (empty($errors)) {
-            global $wpdb;
-            $table_name = $wpdb->prefix . "employeeform";
+<!-- //echo"function outer";
+    // global $wpdb;
+    // $table_name = $wpdb->prefix . "employeeform";
 
-            $wpdb->insert(
-                //table
-                $table_name,
-                //data to be input in the database 
-                array(
-                    'firstname' => $firstname,
-                    'lastname' => $lastname,
-                    'age' => $age,
-                    'contact' => $contact,
-                    'address' => $address
-                ),
-                // data format 
-                array(
-                    '%s',
-                    '%s',
-                    '%d',
-                    '%d',
-                    '%s'
-                )
-            );
-        }
-    }	
-?>
+    // if(isset($_POST('submit')))
+    // {
+    //     $firstname=$_POST['firstname'];
+    //     $lastname=$_POST['lastname'];
+    //     $age=$_POST['age'];
+    //     $contact=$_POST['contact'];
+    //     $address=$_POST['address'];
+    //     $wpdb->query("INSERT INTO $table_name(firstname,lastname,age,contact,address)values('$firstname','$lastname','$age','$contact','$address')");
+    // } -->
+
     <div>
-        <form method="POST" action="<?php echo $_SERVER['REQUEST_URI']; ?>" name="form">
+        <form id="regformid">
             <div>
-                <label><?php _e('First Name'); ?></label>
-                <input type="text" name="firstname" placeholder="Firstname" id="firstname">
-                <span class="error"><?php  $errfild ?></span>
-
+                <label>First Name:</label>
+                <input type="text" name="firstname" placeholder="Firstname" id="firstname" required>
             </div>
             <div>
-                <label><?php _e('Last Name'); ?></label>
-                <input type="text" name="lastname" placeholder="Lastname" id="lastname">
+                <label>Last Name:</label>
+                <input type="text" name="lastname" placeholder="Lastname" id="lastname" required>
             </div>
             <div>
-                <label><?php _e('Age'); ?></label>
-                <input type="number" name="age" placeholder="Age" id="age">
+                <label>Age:</label>
+                <input type="number" name="age" placeholder="Age" id="age" required>
             </div>
             <div>
-                <label><?php _e('Contact'); ?></label>
-                <input type="tel" name="contact" placeholder="Contact No" id="contact">
+                <label>Contact No:</label>
+                <input type="tel" name="contact" placeholder="Contact No" id="contact" required>
             </div>
             <div>
-                <label><?php _e('Address'); ?></label>
-                <input type="text" name="address" placeholder="Address" id="address">
+                <label>Address:</label>
+                <input type="text" name="address" placeholder="Address" id="address" required>
             </div>
             <div>
-                <input type="submit" name="submit" id="submit" value="submit">
+                <label>Password:</label>
+                <input type="password" name="password" placeholder="Password" id="pwd" required>
+            </div>
+            <div>
+                <input type="submit" name="submit" id="regsubmit" value="submit">
             </div>
         </form>
     </div>
 
 <?php
-}
-$var = register_page();
-function plugin_errors(){
-    static $wp_error; // global variable handle
-    return isset($wp_error) ? $wp_error : ($wp_error = new WP_Error(null, null, null));
-}
 
-// displays error messages from form submissions
-function plugin_register_messages() {
-    if($codes = plugin_errors()->get_error_codes()) {
-        echo '<div class="plugin_errors">';
-            // Loop error codes and display errors
-           foreach($codes as $code){
-                $message = plugin_errors()->get_error_message($code);
-                echo '<span class="error"><strong>' . __('Error') . '</strong>: ' . $message . '</span><br/>';
-            }
-        echo '</div>';
+
+
+add_action('wp_ajax_registerdata','ajax_registerdata');
+
+function ajax_registerdata(){
+    echo "asdfasf";
+    $arr=[];
+    wp_parse_str($_POST('registerdata'),$arr);
+    // echo "<pre>";
+    // print_r($arr);
+    global $wpdb;
+    global $table_prefix;
+    $table=$table_prefix.'registerdata';
+    $result =$wpdb->insert($table,[
+        "firstname"=>$arr['firstname'],
+        "lastname"=>$arr['lastname'],
+        "age"=>$arr['age'],
+        "contact"=>$arr['contact'],
+        "address"=>$arr['address'],
+        "password"=>$arr['password'],
+
+    ]);
+    if($result){
+        wp_send_json_success("Data is inserted!");
     }
-}
+    else{
+        wp_send_json_success("Please try again!");
+    }
+} 
 ?>
+
+<script>
+    jQuery('#regformid').submit(function(e){
+        e.preventDefault();
+        var link="<?php echo admin_url('admin-ajax.php')?>";
+        // alert(link);
+        var form = jQuery('#regformid').serialize();
+        var formData= new FormData;
+        formData.append('action','registerdata');
+        formData.append('registerdata',form);
+        jQuery.ajax({
+            url:link,
+            data:formData,
+            processData:false,
+            contentType:false,
+            type:'post',
+            success:function(result){
+                alert(result);
+            }
+        });
+
+    });
+</script>

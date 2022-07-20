@@ -13,7 +13,7 @@
       
     function employee_displayrecord($content)
     {      
-        include_once(ROOTDIR . 'includes/controller/registerview.php');
+        include_once(ROOTDIR . 'includes/controller/controller_registerview.php');
         return $content;
     }
 ?>
