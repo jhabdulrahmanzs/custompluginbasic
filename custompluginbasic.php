@@ -40,6 +40,7 @@ function employeeDB_options_install() {
             `id` int(10) NOT NULL AUTO_INCREMENT,
             `firstname` varchar(100) NOT NULL,
             `lastname` varchar(100) NOT NULL,
+            `email` varchar(100) NOT NULL,
             `age` int(10) NOT NULL,
             `contact` int(15) NOT NULL,
             `address` varchar(100) NOT NULL,

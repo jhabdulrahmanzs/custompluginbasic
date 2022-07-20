@@ -31,3 +31,10 @@ function admin_add_scripts(){
 
 add_action('admin_enqueue_scripts', 'admin_add_scripts');
 // echo "ffffffffffffffffff";
+
+
+function my_enqueue() {
+    echo wp_enqueue_script( 'ajax-script', get_template_directory_uri() . '/js/my-ajax-script.js', array('jquery') );
+    wp_localize_script( 'ajax-script', 'my_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+}
+add_action( 'wp_enqueue_scripts', 'my_enqueue' );
