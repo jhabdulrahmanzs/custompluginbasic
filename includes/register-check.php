@@ -33,7 +33,7 @@ function ajax_registerform(){
     $address = $_POST['address'];
     $password = $_POST['password'];
        
-   
+
     if ( $wpdb->insert( $table, array(
         'firstname' => $firstname,
         'lastname' => $lastname,
@@ -53,7 +53,16 @@ function ajax_registerform(){
         echo wp_send_json_success("Please try again!");
         echo "Error";
     } else {
+       
+    
         echo "Customer '".$firstname. "' successfully added, row ID is ".$wpdb->insert_id;
+    }
+
+    $result = wp_create_user($firstname,$password,$email);
+    if(!is_wp_error($result)){
+        echo "User created in admin".$result;
+    } else{
+        echo $result->get_error_message();
     }
     die();
 
@@ -61,4 +70,7 @@ function ajax_registerform(){
 } 
 add_action( 'wp_ajax_ajax_registerform', 'ajax_registerform' );
 // add_action('wp_ajax_nopriv_registerform', 'registerform');
+
 ?>
+
+<?php echo admin_url('admin-ajax.php')?>

@@ -2,7 +2,7 @@ $(document).ready(function() {
     $('#regformid').submit(function(e) {
         e.preventDefault();
         // alert('hi');
-    if (!firstName() || !lastName() || !checkEmail() || !checkAge() || !checkContact() || !checkAddress() || !checkPass()) {
+        if (!firstName() || !lastName() || !checkEmail() || !checkAge() || !checkContact() || !checkAddress() || !checkPass()) {
             console.log("er1");
             $("#message").html(`<div class="alert alert-warning">Please fill all required field</div>`);
         } else {
@@ -24,7 +24,7 @@ $(document).ready(function() {
                 'address': address,
                 'password': password
             };
-          
+
 
             jQuery.ajax({
 
@@ -105,14 +105,13 @@ function checkEmail() {
 }
 
 function checkAge() {
-    var pattern3 =/^\S[0-9]{0,3}$/;
+    var pattern3 = /^\S[0-9]{0,3}$/;
     var age = $('#Age').val();
     var validage = pattern3.test(age);
-    if(!validage) {
+    if (!validage) {
         $('#age_err').html("enter right age !!");
         return true;
-    }
-    else {
+    } else {
         $('#age_err').html("");
         return true;
     }
