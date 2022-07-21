@@ -22,8 +22,9 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>FIRST</th>
-                    <th>LAST</th>
+                    <th>FIRST NAME</th>
+                    <th>LAST NAME</th>
+                    <th> EMAIL </th>
                     <th>AGE</th>
                     <th>CONTACT</th>
                     <th>ADDRESS</th>
@@ -35,6 +36,7 @@
                         <td><?php echo $row->id; ?></td>
                         <td><?php echo $row->firstname; ?></td>
                         <td><?php echo $row->lastname; ?></td>
+                        <td><?php echo $row->email; ?></td>
                         <td><?php echo $row->age; ?></td>
                         <td><?php echo $row->contact; ?></td>
                         <td><?php echo $row->address; ?></td>
