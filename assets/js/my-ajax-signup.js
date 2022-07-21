@@ -1,12 +1,12 @@
 $(document).ready(function() {
     $('#regformid').submit(function(e) {
         e.preventDefault();
-        alert(lastName());
-        if (!firstName() || !lastName() || !checkEmail() || !checkContact() || !checkAddress() || !checkPass()) {
+        // alert('hi');
+    if (!firstName() || !lastName() || !checkEmail() || !checkAge() || !checkContact() || !checkAddress() || !checkPass()) {
             console.log("er1");
             $("#message").html(`<div class="alert alert-warning">Please fill all required field</div>`);
         } else {
-            var link = "<?php echo admin_url('admin-ajax.php')?>";
+            var link = "http://localhost/wp_plugindev/wp-admin/admin-ajax.php";
             var firstname = $('#FirstName').val();
             var lastname = $('#LastName').val();
             var email = $('#Email').val();
@@ -24,19 +24,22 @@ $(document).ready(function() {
                 'address': address,
                 'password': password
             };
+          
 
             jQuery.ajax({
+
                 type: 'POST',
                 url: link,
                 data: data,
 
-                success: function(result) {
-                    console.log(result);
+                success: function(data) {
+                    console.log(data);
                     $(".success_msg").css("display", "block");
                 },
-                error: function(data) {
-                    $(".error_msg").css("display", "block");
-                }
+                // error: function(data) {
+                //     console.log(data);
+                //     $(".error_msg").css("display", "block");
+                // }
             });
             $('.ajax')[0].reset();
 
@@ -47,9 +50,12 @@ $(document).ready(function() {
 function firstName() {
     console.log("firstname");
     var pattern = /^[A-Za-z]+$/;
-    var user = $('#Firstname').val();
+    var user = $('#FirstName').val();
+    //var user = "pravin";
     var validuser = pattern.test(user);
-    if ($('#Firstname').val().length < 4) {
+    // alert(user);
+    // alert(user.length);
+    if (user.length < 4) {
         $('#firstname_err').html('firstname length is too short');
         return false;
     } else if (!validuser) {
@@ -64,9 +70,9 @@ function firstName() {
 function lastName() {
     console.log("lastname");
     var pattern = /^[A-Za-z]+$/;
-    var user = $('#Lastname').val();
+    var user = $('#LastName').val();
     var validuser = pattern.test(user);
-    if ($('#Lastname').val().length <= 1) {
+    if ($('#LastName').val().length <= 1) {
         $('#lastname_err').html('lastname length is too short');
         return false;
     } else if (!validuser) {
@@ -87,13 +93,27 @@ function checkEmail() {
     var email = $('#Email').val();
     var validemail = pattern1.test(email);
     if (email == "") {
-        $('#useremail_err').html('required field');
+        $('#useremail_err').html('Email required');
         return false;
     } else if (!validemail) {
         $('#useremail_err').html('invalid email');
         return false;
     } else {
         $('#useremail_err').html('');
+        return true;
+    }
+}
+
+function checkAge() {
+    var pattern3 =/^\S[0-9]{0,3}$/;
+    var age = $('#Age').val();
+    var validage = pattern3.test(age);
+    if(!validage) {
+        $('#age_err').html("enter right age !!");
+        return true;
+    }
+    else {
+        $('#age_err').html("");
         return true;
     }
 }
@@ -148,7 +168,7 @@ function checkAddress() {
 
 function checkContact() {
     if (!$.isNumeric($("#Contact").val())) {
-        $("#contact_err").html("only number is allowed");
+        $("#contact_err").html("Enter your Phone Number");
         return false;
     } else if ($("#Contact").val().length != 10) {
         $("#contact_err").html("10 digit required");
