@@ -18,9 +18,7 @@
       
          <form id="regformid" style="width:50%; margin: auto;" >
          <div class="success_msg" style="display: none">User registered Successfully!</div>
-
-                                        <div class="error_msg" style="display: none">Message 
-                        Not Sent, There is some error.</div>
+            <div class="error_msg" style="display: none">Message Not Sent, There is some error.</div>
                     <table class="table table-striped table-bordered" style="width:90%">
                         <tr>
                             <th>First name:</th>
@@ -50,7 +48,7 @@
                         <tr>    
                             <th>Address:</th>
                             <td><input type="text" name="address"  class="form-control" id="Address" placeholder="Address"/></td>
-                            <span class="error" id="address_err"></span>
+                            <span class="error" id="useraddress_err"></span>
                         </tr>
                         <tr>    
                             <th>Password:</th>
