@@ -6,7 +6,7 @@
  * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
- * Author:            Abdul Rahman
+ * Author:            Abdul & Pravin 
  */
 
 
@@ -40,6 +40,7 @@ function employeeDB_options_install() {
             `id` int(10) NOT NULL AUTO_INCREMENT,
             `firstname` varchar(100) NOT NULL,
             `lastname` varchar(100) NOT NULL,
+            `email` varchar(100) NOT NULL,
             `age` int(10) NOT NULL,
             `contact` int(15) NOT NULL,
             `address` varchar(100) NOT NULL,

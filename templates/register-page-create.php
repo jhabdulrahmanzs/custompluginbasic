@@ -9,7 +9,7 @@ function register_page_on_activation() {
      if ( ! current_user_can( 'activate_plugins' ) ) return;
 }
 
-$post_values= 'Register User';
+$post_values= '';
 // $PageGuid = site_url() . "/regsiterdata";
 $page_slug = 'newregistration'; // Slug of the Post
 $new_page = array(

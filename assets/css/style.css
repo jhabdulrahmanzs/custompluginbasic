@@ -8,3 +8,7 @@
 h3 {
     color: #007bff !important;
 }
+
+.error {
+    color: red;
+}

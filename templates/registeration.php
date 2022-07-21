@@ -15,89 +15,56 @@
     // } -->
 
     <div>
-        <form id="regformid">
-            <div>
-                <label>First Name:</label>
-                <input type="text" name="firstname" placeholder="Firstname" id="firstname" required>
-            </div>
-            <div>
-                <label>Last Name:</label>
-                <input type="text" name="lastname" placeholder="Lastname" id="lastname" required>
-            </div>
-            <div>
-                <label>Age:</label>
-                <input type="number" name="age" placeholder="Age" id="age" required>
-            </div>
-            <div>
-                <label>Contact No:</label>
-                <input type="tel" name="contact" placeholder="Contact No" id="contact" required>
-            </div>
-            <div>
-                <label>Address:</label>
-                <input type="text" name="address" placeholder="Address" id="address" required>
-            </div>
-            <div>
-                <label>Password:</label>
-                <input type="password" name="password" placeholder="Password" id="pwd" required>
-            </div>
-            <div>
-                <input type="submit" name="submit" id="regsubmit" value="submit">
-            </div>
-        </form>
+      
+         <form id="regformid" style="width:50%; margin: auto;" >
+         <div class="success_msg" style="display: none">User registered Successfully!</div>
+
+                                        <div class="error_msg" style="display: none">Message 
+                        Not Sent, There is some error.</div>
+                    <table class="table table-striped table-bordered" style="width:90%">
+                        <tr>
+                            <th>First name:</th>
+                            <td><input type="text" name="firstname"  class="form-control" id="FirstName"  placeholder="Firstname"/></td>
+                            <span class="error" id="firstname_err"></span>
+                        </tr>
+                        <tr>    
+                            <th>Last name:</th>
+                            <td><input type="text" name="lastname"  class="form-control" id="LastName" placeholder="Lastname"/></td>
+                            <span class="error" id="lastname_err"></span>
+                        </tr>
+                        <tr>    
+                            <th>Email:</th>
+                            <td><input type="email" name="email"  class="form-control" id="Email"  placeholder="email"/></td>
+                            <span class="error" id="useremail_err"></span>
+                        </tr>
+                        <tr>    
+                            <th>Age:</th>
+                            <td><input type="number" name="age"  class="form-control" id="Age"  placeholder="Age"/></td>
+                            <span class="error" id="age_err"></span>
+                        </tr>
+                        <tr>    
+                            <th>Contact No.:</th>
+                            <td><input type="text" name="contact"  class="form-control"  id="Contact" placeholder="Contact No."/></td>
+                            <span class="error" id="contact_err"></span>
+                        </tr>
+                        <tr>    
+                            <th>Address:</th>
+                            <td><input type="text" name="address"  class="form-control" id="Address" placeholder="Address"/></td>
+                            <span class="error" id="address_err"></span>
+                        </tr>
+                        <tr>    
+                            <th>Password:</th>
+                            <td><input type="password" name="password"  class="form-control" id="Password"  placeholder="Password"/></td>
+                            <span class="error" id="password_err"></span>
+                        </tr>
+                    </table>
+                    <button name="signup" type="submit" id="reg-btn" class="btn btn-outline-primary">Signup</button>
+                 
+            </form>   
     </div>
 
-<?php
+  
 
 
 
-add_action('wp_ajax_registerdata','ajax_registerdata');
 
-function ajax_registerdata(){
-    echo "asdfasf";
-    $arr=[];
-    wp_parse_str($_POST('registerdata'),$arr);
-    // echo "<pre>";
-    // print_r($arr);
-    global $wpdb;
-    global $table_prefix;
-    $table=$table_prefix.'registerdata';
-    $result =$wpdb->insert($table,[
-        "firstname"=>$arr['firstname'],
-        "lastname"=>$arr['lastname'],
-        "age"=>$arr['age'],
-        "contact"=>$arr['contact'],
-        "address"=>$arr['address'],
-        "password"=>$arr['password'],
-
-    ]);
-    if($result){
-        wp_send_json_success("Data is inserted!");
-    }
-    else{
-        wp_send_json_success("Please try again!");
-    }
-} 
-?>
-
-<script>
-    jQuery('#regformid').submit(function(e){
-        e.preventDefault();
-        var link="<?php echo admin_url('admin-ajax.php')?>";
-        // alert(link);
-        var form = jQuery('#regformid').serialize();
-        var formData= new FormData;
-        formData.append('action','registerdata');
-        formData.append('registerdata',form);
-        jQuery.ajax({
-            url:link,
-            data:formData,
-            processData:false,
-            contentType:false,
-            type:'post',
-            success:function(result){
-                alert(result);
-            }
-        });
-
-    });
-</script>
