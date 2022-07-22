@@ -1,19 +1,4 @@
 
-
-<!-- //echo"function outer";
-    // global $wpdb;
-    // $table_name = $wpdb->prefix . "employeeform";
-
-    // if(isset($_POST('submit')))
-    // {
-    //     $firstname=$_POST['firstname'];
-    //     $lastname=$_POST['lastname'];
-    //     $age=$_POST['age'];
-    //     $contact=$_POST['contact'];
-    //     $address=$_POST['address'];
-    //     $wpdb->query("INSERT INTO $table_name(firstname,lastname,age,contact,address)values('$firstname','$lastname','$age','$contact','$address')");
-    // } -->
-
     <div>
       
          <form id="regformid" style="width:50%; margin: auto;" >

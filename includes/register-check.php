@@ -73,4 +73,3 @@ add_action( 'wp_ajax_ajax_registerform', 'ajax_registerform' );
 
 ?>
 
-<?php echo admin_url('admin-ajax.php')?>
