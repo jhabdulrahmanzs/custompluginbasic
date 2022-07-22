@@ -31,6 +31,7 @@ function ajax_registerform(){
        
 require_once(ROOTDIR. './models/registerdata_model.php');
 $register=new registeration();
+$register->create_user($firstname,$password,$email);
 $registerform=array(
     'firstname' => $firstname,
     'lastname' => $lastname,
@@ -55,4 +56,7 @@ $register->insert_data($registerform,$registerform_datatype);
 } 
 add_action( 'wp_ajax_ajax_registerform', 'ajax_registerform' );
 // add_action('wp_ajax_nopriv_registerform', 'registerform');
+
 ?>
+
+<?php echo admin_url('admin-ajax.php')?>
