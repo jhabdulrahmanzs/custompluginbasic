@@ -1,23 +1,6 @@
 <div id="primary" class="content-area">
     <div id="main" class="site-main" role="main">
-        <?php
-        // Direct call in View page 
-        // global $wpdb;
-        // $table_name = $wpdb->prefix . "employeeform";
-        // $rows = $wpdb->get_results("SELECT * from $table_name");
 
-        //using Model get this data 
-
-        // include(ROOTDIR .'./models/employee_model.php');
-        // echo get_template_directory_uri();
-        //echo "pravin";
-        // $query=new employee_path();
-        //print_r($query);
-        // $data=$query->table_view();
-        //  print_r($data);
-        // require_once(ROOTDIR .'./includes/include_plugin.php');
-
-        ?>
         <table id="empList" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>

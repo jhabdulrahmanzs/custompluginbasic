@@ -88,9 +88,11 @@ require_once(ROOTDIR . 'assets/public.php');
 // class controller
 require_once(ROOTDIR . 'includes/employee-display-record.php');
 require_once(ROOTDIR . 'includes/register-check.php');
+require_once(ROOTDIR . 'includes/charts-check.php');
+
 
 
 //  views
 require_once(ROOTDIR . 'templates/employee-page-create.php');
 require_once(ROOTDIR . 'templates/register-page-create.php');
-
+require_once(ROOTDIR . 'templates/charts-page-create.php');
