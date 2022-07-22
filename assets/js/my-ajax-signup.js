@@ -1,9 +1,8 @@
 $(document).ready(function() {
     $('#regformid').submit(function(e) {
         e.preventDefault();
-        // alert('hi');
         if (!firstName() || !lastName() || !checkEmail() || !checkAge() || !checkContact() || !checkAddress() || !checkPass()) {
-            console.log("er1");
+
             $("#message").html(`<div class="alert alert-warning">Please fill all required field</div>`);
         } else {
             var link = "http://localhost/wp_plugindev/wp-admin/admin-ajax.php";
@@ -36,10 +35,10 @@ $(document).ready(function() {
                     console.log(data);
                     $(".success_msg").css("display", "block");
                 },
-                // error: function(data) {
-                //     console.log(data);
-                //     $(".error_msg").css("display", "block");
-                // }
+                error: function(data) {
+                    console.log(data);
+                    $(".error_msg").css("display", "block");
+                }
             });
             $('.ajax')[0].reset();
 
@@ -148,22 +147,6 @@ function checkAddress() {
     }
 }
 
-
-
-// function checkcpass() {
-//     var pass = $('#password').val();
-//     var cpass = $('#cpassword').val();
-//     if (cpass == "") {
-//         $('#cpassword_err').html('confirm password cannot be empty');
-//         return false;
-//     } else if (pass !== cpass) {
-//         $('#cpassword_err').html('confirm password did not match');
-//         return false;
-//     } else {
-//         $('#cpassword_err').html('');
-//         return true;
-//     }
-// }
 
 function checkContact() {
     if (!$.isNumeric($("#Contact").val())) {
