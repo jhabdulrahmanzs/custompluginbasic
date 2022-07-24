@@ -13,7 +13,7 @@
       
     function chart_create_page($content)
     {      
-        include_once(ROOTDIR . './templates/chartview.php');
+        include_once(ROOTDIR . 'includes/controller/controller_charts.php');
         return $content;
     }
 
