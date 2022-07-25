@@ -4,7 +4,6 @@ class mychart
 {
     public function chart_view()
     {
-       // print_r("method call");
         global $wpdb;
         $table_name = $wpdb->prefix . "circketscore";
 

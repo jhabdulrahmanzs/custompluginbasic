@@ -103,13 +103,14 @@ require_once(ROOTDIR . 'admin/init.php');
 
 require_once(ROOTDIR . 'assets/public.php');
 // class controller
-require_once(ROOTDIR . 'includes/employee-display-record.php');
-require_once(ROOTDIR . 'includes/register-check.php');
-require_once(ROOTDIR . 'includes/charts-check.php');
+require_once(ROOTDIR . 'includes/slug_check/employee-check.php');
+require_once(ROOTDIR . 'includes/slug_check/register-check.php');
+require_once(ROOTDIR . 'includes/slug_check/charts-check.php');
 
 
 
 //  views
-require_once(ROOTDIR . 'templates/employee-page-create.php');
-require_once(ROOTDIR . 'templates/register-page-create.php');
-require_once(ROOTDIR . 'templates/charts-page-create.php');
+require_once(ROOTDIR . 'templates/page_creation/employee-page-create.php');
+require_once(ROOTDIR . 'templates/page_creation/register-page-create.php');
+require_once(ROOTDIR . 'templates/page_creation/charts-page-create.php');
+

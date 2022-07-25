@@ -16,4 +16,7 @@
         include_once(ROOTDIR . 'includes/controller/controller_registerview.php');
         return $content;
     }
+
+
+    
 ?>
