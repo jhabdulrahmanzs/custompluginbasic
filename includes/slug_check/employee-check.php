@@ -5,16 +5,18 @@
     $getslugname = str_replace($gethomeurl,'',$actual_link);
     $rmslash = preg_replace('|/|', '',$getslugname);
     
-    if($rmslash == 'charts') {
+    if($rmslash == 'regsiterdata') {
        
-        add_filter('the_content', 'chart_create_page');
+        add_filter('the_content', 'employee_displayrecord');
     }      
         
       
-    function chart_create_page($content)
+    function employee_displayrecord($content)
     {      
-        include_once(ROOTDIR . './templates/chartview.php');
+        include_once(ROOTDIR . 'includes/controller/controller_registerview.php');
         return $content;
     }
 
-    ?>
+
+    
+?>

@@ -4,7 +4,7 @@ class registeration
 
     public function insert_data($registerform,$registerform_datatype)
     {
-        // print_r($firstname);
+        print_r($firstname);
         global $wpdb;
         global $table;
         $table = $wpdb->prefix . "registerform";

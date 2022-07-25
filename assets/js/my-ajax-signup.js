@@ -1,5 +1,6 @@
 $(document).ready(function() {
     $('#regformid').submit(function(e) {
+        // alert('helo');
         e.preventDefault();
         if (!firstName() || !lastName() || !checkEmail() || !checkAge() || !checkContact() || !checkAddress() || !checkPass()) {
 
@@ -26,7 +27,6 @@ $(document).ready(function() {
 
 
             jQuery.ajax({
-
                 type: 'POST',
                 url: link,
                 data: data,
@@ -40,7 +40,7 @@ $(document).ready(function() {
                     $(".error_msg").css("display", "block");
                 }
             });
-            $('.ajax')[0].reset();
+            // $('.ajax')[0].reset();
 
         }
     });

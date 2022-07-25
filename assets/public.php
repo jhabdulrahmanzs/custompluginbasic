@@ -1,5 +1,6 @@
 <?php
 
+
 function wp_add_scripts(){
     // bootstrap css
     wp_enqueue_style( 'minCSSbOOTSTRAP', trailingslashit( MY_PLUGIN_URL ). 'assets/vendor/bootstrap/css/bootstrap.min.css');
@@ -10,16 +11,17 @@ function wp_add_scripts(){
    
 
     // jquery-1.7.1
-    wp_enqueue_script('jquery-1.7.1', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', false, false, true);
+    wp_enqueue_script('jquery-1.7.1', trailingslashit( MY_PLUGIN_URL ). 'assets/vendor/jquery/jquery.min.js', false, false, false);
+    wp_enqueue_script( 'chartjs', trailingslashit( MY_PLUGIN_URL ). 'assets/vendor/chartjs/chart.js', false, false, true);
     // bootstrap js
-    wp_enqueue_script( 'bubbleJSbOOTSTRAP', trailingslashit( MY_PLUGIN_URL ). 'assets/vendor/bootstrap/js/bootstrap.bundle.js');
-
+    wp_enqueue_script( 'bubbleJSbOOTSTRAP', trailingslashit( MY_PLUGIN_URL ). 'assets/vendor/bootstrap/js/bootstrap.bundle.js',false, false, true);
     // ajax plugin link
     wp_enqueue_script( 'signup-ajax-script', trailingslashit( MY_PLUGIN_URL ). 'assets/js/my-ajax-signup.js',false, false, true);
-    // wp_localize_script( 'ajax-script', 'my_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+    
+    wp_enqueue_script( 'chart-ajax-script', trailingslashit( MY_PLUGIN_URL ). 'assets/js/barchart.js',false, false, true);
     // Add main JS
         
-    wp_enqueue_script( 'main-script', trailingslashit( MY_PLUGIN_URL ). 'assets/js/main.js');
+    // wp_enqueue_script( 'main-script', trailingslashit( MY_PLUGIN_URL ). 'assets/js/main.js',false, false, true);
     // wp_enqueue_script( 'wp-register-script', trailingslashit( MY_PLUGIN_URL ). 'assets/js/wp-register.js');
   
          
