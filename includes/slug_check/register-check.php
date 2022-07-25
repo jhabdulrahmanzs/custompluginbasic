@@ -13,14 +13,13 @@
       
     function register_create_page($content)
     {      
-        include_once(ROOTDIR . './templates/registeration.php');
+        include_once(ROOTDIR . '/templates/registeration.php');
         return $content;
     }
 
 
 
 function ajax_registerform(){
-   
     $firstname = $_POST['firstname'];    
     $lastname = $_POST['lastname'];
     $email = $_POST['email'];
@@ -29,7 +28,7 @@ function ajax_registerform(){
     $address = $_POST['address'];
     $password = $_POST['password'];
        
-require_once(ROOTDIR. './models/registerdata_model.php');
+require_once(ROOTDIR. '/models/registerdata_model.php');
 $register=new registeration();
 $register->create_user($firstname,$password,$email);
 $registerform=array(
@@ -51,7 +50,7 @@ $registerform_datatype=array(
     '%s'
 );
 $register->insert_data($registerform,$registerform_datatype);
-//print_r($var);
+
    
 } 
 add_action( 'wp_ajax_ajax_registerform', 'ajax_registerform' );

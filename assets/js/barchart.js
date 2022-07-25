@@ -1,14 +1,23 @@
-$(document).ready(function() {
-    var link = "http://localhost/wp_plugindev/wp-content/plugins/custompluginbasic/includes/data/circket.json";
-    console.log(link)
-    $.ajax({
+$(document).ready(function(e) {
+    e.preventDefault();
+    // var link = "http://localhost/wp_plugindev/wp-content/plugins/custompluginbasic/includes/data/circket.json";
+    var link = "http://localhost/wp_plugindev/wp-admin/admin-ajax.php";
+    // console.log(link)
+    var data = {
+        'action': 'charts_ajax',
+    };
+    jQuery.ajax({
         url: link,
-        method: "POST",
+        method: "GET",
+        data: data,
         success: function(data) {
+            console.log(data)
+            data = JSON.parse(data);
             var player = [];
             var score = [];
             var colors = [];
             for (var i in data) {
+                console.log(data[i].player_name);
                 player.push(data[i].player_name);
                 score.push(data[i].runs);
                 colors.push(color());
