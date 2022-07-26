@@ -61,7 +61,6 @@ require_once(ROOTDIR . 'data/define_tables.php');
 require_once(ROOTDIR . 'admin/init.php');
 $adminscript = new admin_customscript();
 
-
 require_once(ROOTDIR . 'assets/public.php');
 $wpscript = new wp_customscript();
 
@@ -70,10 +69,17 @@ require_once(ROOTDIR . 'includes/slug_check/employee-check.php');
 require_once(ROOTDIR . 'includes/slug_check/register-check.php');
 require_once(ROOTDIR . 'includes/slug_check/charts-check.php');
 
-
+//controller call variables
+$chart_slug=new chart_check();
+$employee_slug=new employee_check();
+$register_slug=new register_check();
 
 //  views
 require_once(ROOTDIR . 'templates/page_creation/employee-page-create.php');
 require_once(ROOTDIR . 'templates/page_creation/register-page-create.php');
 require_once(ROOTDIR . 'templates/page_creation/charts-page-create.php');
 
+//view call variables
+$page_chart=new chartpage();
+$page_employee=new employeepage();
+$page_register=new registerpage();
