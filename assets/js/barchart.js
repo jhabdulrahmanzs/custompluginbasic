@@ -1,5 +1,5 @@
-$(document).ready(function(e) {
-    e.preventDefault();
+$(document).ready(function() {
+    // e.preventDefault();
     // var link = "http://localhost/wp_plugindev/wp-content/plugins/custompluginbasic/includes/data/circket.json";
     var link = "http://localhost/wp_plugindev/wp-admin/admin-ajax.php";
     // console.log(link)

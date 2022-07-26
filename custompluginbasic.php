@@ -59,9 +59,12 @@ require_once(ROOTDIR . 'data/define_tables.php');
 
 // include css and js files
 require_once(ROOTDIR . 'admin/init.php');
+$adminscript = new admin_customscript();
 
 
 require_once(ROOTDIR . 'assets/public.php');
+$wpscript = new wp_customscript();
+
 // class controller
 require_once(ROOTDIR . 'includes/slug_check/employee-check.php');
 require_once(ROOTDIR . 'includes/slug_check/register-check.php');
