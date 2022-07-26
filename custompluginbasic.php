@@ -11,91 +11,51 @@
 
 
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
+if (!class_exists('customplugin')) {
+  class customplugin
+  {
 
-function employeeDB_options_install() {
+    function __construct()
+    {
+      register_activation_hook(__FILE__,  [$this, 'create_plugin_database_table']);
+      // add_action('wp_head', [$this, 'create_plugin_database_table']);
+    }
 
-    global $wpdb;
+    public function create_plugin_database_table() {
+      global $wpdb;
 
-    $table_name = $wpdb->prefix . "employeeform";
-    $charset_collate = $wpdb->get_charset_collate();
-    $sql = "CREATE TABLE $table_name (
-            `id` int(10) NOT NULL AUTO_INCREMENT,
-            `firstname` varchar(100) NOT NULL,
-            `lastname` varchar(100) NOT NULL,
-            `age` int(10) NOT NULL,
-            `contact` int(15) NOT NULL,
-            `address` varchar(100) NOT NULL,
-            PRIMARY KEY (`id`)
-          ) $charset_collate; ";
+      $table_array = array(
+        'employee_form',
+        'register_form',
+        'circket_score'
 
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-    dbDelta($sql);
+      );
 
+      $table_obj = new database_table();
 
-    $table_name = $wpdb->prefix . "registerform";
-    $charset_collate = $wpdb->get_charset_collate();
-    $sql = "CREATE TABLE $table_name (
-            `id` int(10) NOT NULL AUTO_INCREMENT,
-            `firstname` varchar(100) NOT NULL,
-            `lastname` varchar(100) NOT NULL,
-            `email` varchar(100) NOT NULL,
-            `age` int(10) NOT NULL,
-            `contact` int(15) NOT NULL,
-            `address` varchar(100) NOT NULL,
-            `password` varchar(100) NOT NULL,
+      require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+      foreach ($table_array as $tablename) {
 
-            PRIMARY KEY (`id`)
-          ) $charset_collate; ";
+        $sql = $table_obj->$tablename();
 
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-    dbDelta($sql);
+        dbDelta($sql);
+      }
+    }
 
-    $table_name = $wpdb->prefix . "circketscore";
-    $charset_collate = $wpdb->get_charset_collate();
-    $sql = "CREATE TABLE $table_name (
-            `id` int(10) NOT NULL AUTO_INCREMENT,
-            `player_name` varchar(100) NOT NULL,
-            `runs` int(15) NOT NULL,
-
-            PRIMARY KEY (`id`)
-          ) $charset_collate; ";
-
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-    dbDelta($sql);
-
-    
+  
+  }
 }
 
-// will run the install scripts upon plugin activation
-register_activation_hook(__FILE__, 'employeeDB_options_install');
-
-// Delete-table
-function employeeDB_options_delete() {
-    global $wpdb;
-    $table_name = $wpdb->prefix.'employeeform';
-    $sql = "DROP TABLE IF EXISTS $table_name";
-    $wpdb->query($sql);
-
-    $table_name = $wpdb->prefix.'registerform';
-    $sql = "DROP TABLE IF EXISTS $table_name";
-    $wpdb->query($sql);
-
-    $table_name = $wpdb->prefix.'circketscore';
-    $sql = "DROP TABLE IF EXISTS $table_name";
-    $wpdb->query($sql);
-    delete_option("devnote_plugin_db_version");
-}
-register_deactivation_hook( __FILE__, 'employeeDB_options_delete' );
-
-
-
+$custom = new customplugin();
 
 define('MY_PLUGIN_URL',plugin_dir_url(__FILE__));
 define('ROOTDIR', plugin_dir_path(__FILE__));
 
 
+// create tables
+require_once(ROOTDIR . 'data/define_tables.php');
 
 // include css and js files
 require_once(ROOTDIR . 'admin/init.php');
